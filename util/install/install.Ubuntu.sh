@@ -20,14 +20,10 @@ install__deepdive_build_deps() {
     sudo apt-get update
     sudo apt-get install -qy software-properties-common
     if $is_debian; then
-        case $(cat /etc/debian_version) in
-            8.*) # jessie-backports is needed
-                sudo add-apt-repository -y "deb http://cdn-fastly.deb.debian.org/debian jessie-backports main"
-                sudo apt-get update
-                ;;
-        esac
-        build_deps+=(
-        )
+        # jessie-backports is needed for openjdk-8
+        sudo add-apt-repository -y "deb http://cdn-fastly.deb.debian.org/debian jessie-backports main"
+        sudo apt-get update
+        ;;
     else
         sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test  # for gcc >= 4.8 on Precise (12.04)
         sudo add-apt-repository -y ppa:openjdk-r/ppa  # for openjdk 8
@@ -84,12 +80,10 @@ install__deepdive_runtime_deps() {
     sudo apt-get update
     sudo apt-get install -qy software-properties-common
     if $is_debian; then
-        case $(cat /etc/debian_version) in
-            8.*) # jessie-backports is needed for openjdk-8
-                sudo add-apt-repository -y "deb http://cdn-fastly.deb.debian.org/debian jessie-backports main"
-                sudo apt-get update
-                ;;
-        esac
+        # jessie-backports is needed for openjdk-8
+        sudo add-apt-repository -y "deb http://cdn-fastly.deb.debian.org/debian jessie-backports main"
+        sudo apt-get update
+        ;;
     else
         sudo add-apt-repository -y ppa:openjdk-r/ppa  # for openjdk-8
         sudo apt-get update

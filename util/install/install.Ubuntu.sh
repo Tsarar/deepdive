@@ -18,9 +18,7 @@ install__deepdive_build_deps() {
     set -x
     build_deps=()
     sudo apt-get update
-    sudo apt --fix-broken install python-pycurl python-apt
     sudo apt-get install -qy software-properties-common
-    sudo apt --fix-broken install python-pycurl python-apt
     if $is_debian; then
         case $(cat /etc/debian_version) in
             8.*) # jessie-backports is needed
@@ -57,8 +55,6 @@ install__deepdive_build_deps() {
         grep
         bc
         perl
-        python-pycurl
-        python-apt
         # bash
         bison
         # psycopg2
@@ -86,9 +82,7 @@ install__deepdive_runtime_deps() {
     runtime_deps=()
     # install all runtime dependencies for DeepDive
     sudo apt-get update
-    sudo apt --fix-broken install python-pycurl python-apt
     sudo apt-get install -qy software-properties-common
-    sudo apt --fix-broken install python-pycurl python-apt
     if $is_debian; then
         case $(cat /etc/debian_version) in
             8.*) # jessie-backports is needed for openjdk-8
@@ -111,8 +105,6 @@ install__deepdive_runtime_deps() {
         grep
         mawk
         perl
-        python-pycurl
-        python-apt
         openjdk-8-jre-headless
         gnuplot
         libltdl7  # for graphviz
